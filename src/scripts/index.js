@@ -1,5 +1,6 @@
 import '../styles/style.css';
 import * as THREE from 'three';
+import { ShaderMaterial } from 'three';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -25,12 +26,19 @@ document.body.append(renderer.domElement);
 renderer.domElement.width = innerWidth;
 renderer.domElement.height = innerHeight;
 
+const earthVertexShader = require('../shaders/earth.vs');
+const earthFragmentShader = require('../shaders/earth.fs');
+// console.log(earthVertexShader);
 const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(5, 50, 50), 
-    new THREE.MeshBasicMaterial({
-        // color: 0xff0000,
-        map: new THREE.TextureLoader().load("images/earth.jpg")
+    new ShaderMaterial({
+        vertexShader: earthVertexShader,
+        fragmentShader: earthFragmentShader
     })
+    // new THREE.MeshBasicMaterial({
+    //     // color: 0xff0000,
+    //     map: new THREE.TextureLoader().load("images/earth.jpg")
+    // })
 );
 
 scene.add(sphere);

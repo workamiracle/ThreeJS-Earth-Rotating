@@ -41,6 +41,12 @@ module.exports = {
                 use: [MiniCSSExtractPlugin.loader, 'css-loader'],
             },
 
+            // GLSL
+            {
+                test: /\.(glsl|vs|fs|vert|frag)$/,
+                use: ['webpack-glsl-loader'],
+            },
+
             // Images
             {
                 test: /\.(jpg|png|gif|svg)$/,
