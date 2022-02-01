@@ -12,6 +12,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 window.addEventListener('resize', () => {
     // update camera
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -29,11 +30,16 @@ renderer.domElement.height = innerHeight;
 const earthVertexShader = require('../shaders/earth.vs');
 const earthFragmentShader = require('../shaders/earth.fs');
 // console.log(earthVertexShader);
-const sphere = new THREE.Mesh(
+var sphere = new THREE.Mesh(
     new THREE.SphereGeometry(5, 50, 50), 
     new ShaderMaterial({
         vertexShader: earthVertexShader,
-        fragmentShader: earthFragmentShader
+        fragmentShader: earthFragmentShader,
+        uniforms: {
+            earthTexture: {
+                value: new THREE.TextureLoader().load("images/earth.jpg")
+            }
+        }
     })
     // new THREE.MeshBasicMaterial({
     //     // color: 0xff0000,
