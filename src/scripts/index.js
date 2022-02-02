@@ -1,6 +1,7 @@
 import '../styles/style.css';
 import * as THREE from 'three';
-import { ShaderMaterial } from 'three';
+
+import { earth } from './earth';
 
 // setup
 const scene = new THREE.Scene();
@@ -24,29 +25,13 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// create earth
-const earthVertexShader = require('../shaders/earth.vs');
-const earthFragmentShader = require('../shaders/earth.fs');
-var sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(5, 50, 50), 
-    new ShaderMaterial({
-        vertexShader: earthVertexShader,
-        fragmentShader: earthFragmentShader,
-        uniforms: {
-            earthTexture: {
-                value: new THREE.TextureLoader().load("images/earth.jpg")
-            }
-        }
-    })
-);
-
 // add the objects to the scene
-scene.add(sphere);
+scene.add(earth);
 camera.position.z = 10;
 
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
-    // sphere.rotation.y += 0.001;
+    // earth.rotation.y += 0.001;
 }
 animate();
