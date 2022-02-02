@@ -16,3 +16,15 @@ export var earth = new THREE.Mesh(
         }
     })
 );
+
+const earthAtmosphereVertexShader = require('../shaders/earth_atmosphere.vs');
+const earthAtmosphereFragmentShader = require('../shaders/earth_atmosphere.fs');
+export var earthAtmosphere = new THREE.Mesh(
+    new THREE.SphereGeometry(5, 50, 50), 
+    new ShaderMaterial({
+        vertexShader: earthAtmosphereVertexShader,
+        fragmentShader: earthAtmosphereFragmentShader,
+        blending: THREE.AdditiveBlending,
+        side: THREE.BackSide
+    })
+);

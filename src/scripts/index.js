@@ -1,7 +1,7 @@
 import '../styles/style.css';
 import * as THREE from 'three';
 
-import { earth } from './earth';
+import { earth, earthAtmosphere } from './earth';
 
 // setup
 const scene = new THREE.Scene();
@@ -27,6 +27,8 @@ window.addEventListener('resize', () => {
 
 // add the objects to the scene
 scene.add(earth);
+scene.add(earthAtmosphere);
+earthAtmosphere.scale.set(1.1, 1.1, 1.1);
 camera.position.z = 10;
 
 function animate() {
