@@ -2,6 +2,7 @@ import '../styles/style.css';
 import * as THREE from 'three';
 import { ShaderMaterial } from 'three';
 
+// setup
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
     75, innerWidth / innerHeight, 0.1, 1000
@@ -21,15 +22,11 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     renderer.setSize(window.innerWidth, window.innerHeight);
-}); // NOTE: working!
+});
 
-document.body.append(renderer.domElement);
-renderer.domElement.width = innerWidth;
-renderer.domElement.height = innerHeight;
-
+// create earth
 const earthVertexShader = require('../shaders/earth.vs');
 const earthFragmentShader = require('../shaders/earth.fs');
-// console.log(earthVertexShader);
 var sphere = new THREE.Mesh(
     new THREE.SphereGeometry(5, 50, 50), 
     new ShaderMaterial({
@@ -41,17 +38,15 @@ var sphere = new THREE.Mesh(
             }
         }
     })
-    // new THREE.MeshBasicMaterial({
-    //     // color: 0xff0000,
-    //     map: new THREE.TextureLoader().load("images/earth.jpg")
-    // })
 );
 
+// add the objects to the scene
 scene.add(sphere);
 camera.position.z = 10;
 
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
+    // sphere.rotation.y += 0.001;
 }
 animate();
