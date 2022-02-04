@@ -2,11 +2,12 @@ import '../styles/style.css';
 import * as THREE from 'three';
 
 import { earth, earthAtmosphere } from './earth';
+import { stars } from './stars';
 
 // setup
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
-    75, innerWidth / innerHeight, 0.1, 1000
+    100, innerWidth / innerHeight, 0.1, 1000
 );
 const canvas = document.getElementById("webgl-canvas");
 const renderer = new THREE.WebGLRenderer({
@@ -29,6 +30,8 @@ window.addEventListener('resize', () => {
 scene.add(earth);
 scene.add(earthAtmosphere);
 earthAtmosphere.scale.set(1.1, 1.1, 1.1);
+scene.add(stars);
+
 camera.position.z = 10;
 
 function animate() {
