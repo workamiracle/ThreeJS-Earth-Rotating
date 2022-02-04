@@ -34,6 +34,6 @@ camera.position.z = 10;
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
-    // earth.rotation.y += 0.001;
+    earth.rotation.y += 0.001;
 }
 animate();
