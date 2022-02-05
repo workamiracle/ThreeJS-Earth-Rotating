@@ -89,6 +89,5 @@ camera.position.z = 10;
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
-    // mouse event animation
 }
 animate();
